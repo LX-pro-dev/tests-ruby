@@ -1,49 +1,50 @@
-def translate(string)
-  m=""
-  tab = string.split(" ")
-  tab.each do |x|
-    puts x
-    m = x.match(/\b([bcdfghjklmnprstvwxyz]|qu)+/) 
-    puts m+"eejeje"
-    lg = 2#m.length
-    word = ""
-    if m == 0
-      word = x +"ay"
-      puts word
-    elsif m == 1
-      tab = x[1..x.lg-1]+ m +"ay"
-      puts word
-    elsif m == 2
-      word = x[2..x.lg-1]+ m +"ay"
-      puts word
-    elsif m == 3
-      word = x[3..x.lg-1]+ m +"ay"
-      puts word
-    end
-    return word
-  end
+def match_word(str)
+  return str.match(/\b([bcdfghjklmnprstvwstryz]|qu)+/) 
+end 
 
-  #tab2 = []
-  #tab = string.split(" ")
-  
-  #tab.each do |x| 
-  #  word = ''
-  #  if(x[0] == 'a' || x[0] == 'e' || x[0] == 'i' || x[0] == 'o' || x[0] == 'u')
-  #   word = x+"ay"
-  #  else
-  #   if(x[2] != 'a' || x[2] != 'e' || x[2] != 'i' || x[2] != 'o' || x[2] != 'u' && x[1] != 'a' || x[1] != 'e' || x[1] != 'i' || x[1] != 'o' || x[1] != 'u' && x[0] != 'a' || x[0] != 'e' || x[0] != 'i' || x[0] != 'o' || x[0] != 'u')
-  #     word = x[3..x.lg-1]+x[0,3]+"ay"
-  #   elsif(x[1] != 'a' || x[1] != 'e' || x[1] != 'i' || x[1] != 'o' || x[1] != 'u' && x[0] != 'a' || x[0] != 'e' || x[0] != 'i' || x[0] != 'o' || x[0] != 'u')
-  #     word = x[2..x.lg-1]+x[0,2]+"ay"
-  #   elsif(x[0] != 'a' || x[0] != 'e' || x[0] != 'i' || x[0] != 'o' || x[0] != 'u')
-  #     word = x[1..x.lg-1]+x[0]+"ay"
-  #   end
-  # end
-   
-  # tab2 << word
-  #end
-  
-  #return tab2.join(" ")
+def making_array_of_strings(str)
+  return str.split(' ')
 end
 
-puts translate("uiox")
+def word_length(str)
+  return str.length
+end
+def remaking_string(tab)
+  return tab.join(" ")
+end
+
+def changing_string(str,lg)
+  word = ""
+  if lg == 0
+    word = str +"ay"
+    puts word
+  elsif lg == 1
+    word = str[3..str.length-1]+str[0,3]+"ay"
+    puts word
+  elsif lg == 2
+    word = str[2..str.length-1]+str[0,2]+"ay"
+    puts word
+  elsif lg == 3
+    word = str[3..str.length-1]+str[0,3]+"ay"
+    puts word
+  end
+end
+
+def translate(str)
+  tab = making_array_of_strings(str)
+  lg=0
+  word = ""
+  tab2 = []
+  tab.each do |stri| tab2 << changing_string(stri,word_length(match_word(stri)))
+    #word = match_word(stri)
+    #puts word
+    #lg = word_length(match_word(stri))
+    #puts  lg
+    #word = changing_string(stri,word_length(match_word(stri)))
+    #tab2 << word
+  end
+  remaking_string(tab2)
+end
+
+translate("coucou")
+puts word_length("c")

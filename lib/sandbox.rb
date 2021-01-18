@@ -1,15 +1,14 @@
 def match_word(str)
   return str.match(/\b([bcdfghjklmnprstvwstryz]|qu)+/) 
-end
-
-def beginning_of_string (str)
-  return str.length
 end 
 
 def making_array_of_strings(str)
   return str.split(' ')
 end
 
+def word_length(str)
+  return str.length
+end
 def remaking_string(tab)
   return tab.join(" ")
 end
@@ -33,8 +32,19 @@ end
 
 def translate(str)
   tab = making_array_of_strings(str)
-  tab.each |stri|
-  lg = beginning_of_string (match_word(stri))
-  puts lg
+  lg=0
+  word = ""
+  tab2 = []
+  tab.each do |stri|
+    word = match_word(stri)
+    puts word
+    lg = word_length(match_word(stri))
+    puts  lg
+    word = changing_string(stri,word_length(match_word(stri)))
+    tab2 << word
+  end
+  remaking_string(tab2)
 end
-puts translate("coucou")
+
+translate("coucou")
+puts word_length("c")
